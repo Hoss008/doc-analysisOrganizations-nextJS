@@ -13,7 +13,7 @@ model User {
   name String?
   email String  @unique
   createdAt DateTime @default(now())
-  memberships  OrganizationMembership[]
+  memberships  OrganizationMember[]
   documents Document[]
   @@map("users") // Map to "users" table in the database 
 }
@@ -24,7 +24,7 @@ model Organization {
   name String?
   slug String  @unique
   createdAt DateTime @default(now())
-  members  OrganizationMembership[]
+  members  OrganizationMember[]
   documents Document[]
   @@map("organizations") 
 }
@@ -36,5 +36,24 @@ model OrganizationMember {
   role String  @default("member")
   organization Organization @relation(fields: [organizationId], references: [id])
   user User @relation(fields: [userId], references: [id])
- @@map("organization_members") 
+  @@unique([organizationId, userId]) // Ensure a user can only be a member of an organization once
+ @@map("organizations_members") 
+}
+
+model Document {
+  id    String     @id @default(cuid())
+  name  String
+  content String?
+  fileUrl String?
+  fileSize Int?
+  fileType String?
+  aisummary String?
+  aikeywords String[]
+  sentiment String?
+  organizationId String
+  userId String
+  organization Organization @relation(fields: [organizationId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+ @@map("documents") 
 }
