@@ -1,4 +1,3 @@
-import { AnalysisType } from "@/types";
 import {
   Brain,
   Hash,
@@ -55,3 +54,9 @@ export const features = [
   },
 ];
 
+export const steps = [
+  "Upload your documents",
+  "Choose an analysis type",
+  "Review AI insights and summaries",
+  "Share results with your team",
+];
