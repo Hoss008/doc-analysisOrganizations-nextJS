@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div>
-      TEST HOME PAGE
+      Watch section → close video → build from memory → compare → modify. 
     </div>
   );
 }
