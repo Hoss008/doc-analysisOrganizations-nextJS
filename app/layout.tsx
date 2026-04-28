@@ -21,7 +21,12 @@ export default function RootLayout({
         lang="en"
         className={inter.className}
       >
-        <body className="min-h-full flex flex-col">{children}</body>
+        <body className="min-h-screen flex flex-col">
+          {/* {header} */}
+          {/* {main} */}
+          <main className="flex-1">{children}</main>
+          {/* {footer} */}
+          </body>
       </html>
     </ClerkProvider>
   );
