@@ -32,11 +32,11 @@ export async function syncUserToDatabase() {
                 name,
             },
         });
-        console.log("Created new user in DB:", ${email});
+        console.log(`Created new user in DB:, ${email}`);
     }
 
   } catch (error) {
     // Handle error
-    console.error("Error syncing user to database:", error);
+    console.error(`Error syncing user to database:`, error);
   }
 }

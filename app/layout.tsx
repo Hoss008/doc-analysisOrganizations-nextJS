@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import "./globals.css";
+import { syncUserToDatabase } from "@/lib/sync-user";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,11 +14,12 @@ export const metadata: Metadata = {
     "DocuAI is an AI-powered document analysis tool that helps you extract insights, summarize content, and understand sentiment from your documents. With advanced features like keyword extraction and Q&A generation, DocuAI makes it easy to analyze and manage your documents efficiently.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await syncUserToDatabase();
   return (
     <ClerkProvider>
       <html lang="en" className={inter.className}>
