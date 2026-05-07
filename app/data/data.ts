@@ -1,3 +1,4 @@
+import { AnalysisType } from "@/types";
 import {
   Brain,
   Hash,
@@ -14,49 +15,80 @@ export const features = [
   {
     icon: Brain,
     title: "AI-Powered Analysis",
-    description:
-      "Leverage advanced AI to analyze documents and extract insights",
+    description: "Get instant summaries and insights with Google Gemini AI",
   },
   {
-    icon: Sparkles,
-    title: "Smart Summarization",
-    description: "Get concise summaries of lengthy documents automatically",
-  },
-  {
-    icon: Hash,
-    title: "Keyword Extraction",
-    description: "Automatically identify and extract key terms and topics",
-  },
-  {
-    icon: MessageCircle,
-    title: "Sentiment Analysis",
-    description: "Understand the emotional tone and sentiment of documents",
-  },
-  {
-    icon: MessageSquare,
-    title: "Q&A Generation",
-    description: "Generate relevant questions and answers from your documents",
-  },
-  {
-    icon: Shield,
-    title: "Secure Storage",
-    description: "Keep your documents safe with encrypted cloud storage",
+    icon: Users,
+    title: "Multi-Tenant",
+    description: "Separate organizations with isolated document storage",
   },
   {
     icon: Upload,
     title: "Easy Upload",
-    description: "Upload documents in various formats with one click",
+    description: "Drag & drop or select files in multiple formats",
   },
   {
-    icon: Users,
-    title: "Team Collaboration",
-    description: "Share documents and insights with your team members",
+    icon: Shield,
+    title: "Secure",
+    description: "Your documents are encrypted and stored securely",
   },
 ];
 
 export const steps = [
-  "Upload your documents",
-  "Choose an analysis type",
-  "Review AI insights and summaries",
-  "Share results with your team",
+  "Sign up for free account",
+  "Create an organization",
+  "Upload documents",
+  "Get AI analysis instantly",
 ];
+
+export const allowedTypes = [
+  "text/plain",
+  "application/pdf",
+  "application/msword",
+  "text/markdown",
+];
+
+export const analysisTypes: {
+  value: AnalysisType;
+  label: string;
+  description: string;
+  icon: React.ComponentType<any>;
+}[] = [
+  {
+    value: "summary",
+    label: "Summary",
+    description: "Generate comprehensive document summary",
+    icon: Sparkles,
+  },
+  {
+    value: "qa",
+    label: "Q&A",
+    description: "Generate questions and answers from document",
+    icon: MessageCircle,
+  },
+  {
+    value: "sentiment",
+    label: "Sentiment",
+    description: "Analyze tone and emotional sentiment",
+    icon: MessageSquare,
+  },
+  {
+    value: "entities",
+    label: "Entities",
+    description: "Extract names, places, organizations",
+    icon: Hash,
+  },
+  {
+    value: "extract",
+    label: "Extract",
+    description: "Extract structured information",
+    icon: List,
+  },
+];
+
+export const formatFileSize = (bytes?: number) => {
+  if (!bytes) return "N/A";
+  if (bytes < 1024) return bytes + " bytes";
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+  return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+};
