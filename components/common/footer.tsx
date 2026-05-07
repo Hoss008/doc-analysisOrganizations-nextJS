@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Brain, Globe, Mail, Twitter } from "lucide-react";
+import { Brain, Github, Twitter, Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -29,17 +29,17 @@ export default function Footer() {
 
   const socialLinks = [
     {
-      icon: <Globe className="h-5 w-5" />,
+      icon: <Github className="h-5 w-5" />,
       href: "https://github.com",
       label: "GitHub",
     },
     {
-      icon: <Globe className="h-5 w-5" />,
+      icon: <Twitter className="h-5 w-5" />,
       href: "https://twitter.com",
       label: "Twitter",
     },
     {
-      icon: <Globe className="h-5 w-5" />,
+      icon: <Mail className="h-5 w-5" />,
       href: "mailto:support@docuai.com",
       label: "Email",
     },
