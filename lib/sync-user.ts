@@ -1,5 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "./prisma";
 
 export async function syncUserToDatabase() {
   try {
@@ -12,32 +12,32 @@ export async function syncUserToDatabase() {
     const name =
       `${clerkUser.firstName || ""} ${clerkUser.lastName || ""}`.trim();
 
-    // Check if user exists in db
     let dbUser = await prisma.user.findUnique({
       where: { clerkUserId: clerkUser.id },
     });
+
     if (dbUser) {
-      // Update existing user
       dbUser = await prisma.user.update({
-        where: { clerkUserId: clerkUser.id },
+        where: { id: dbUser.id },
         data: {
           email,
           name: name || dbUser.name,
         },
       });
     } else {
-      // Create new user
       dbUser = await prisma.user.create({
         data: {
           clerkUserId: clerkUser.id,
           email,
-          name,
+          name: name || "User",
         },
       });
-      console.log(`Created new user in DB: ${email}`);
+      console.log(`New user created: ${email}`);
     }
+
+    return dbUser;
   } catch (error) {
-    // Handle error
-    console.error(`Error syncing user to database:`, error);
+    console.error("Error syncing user from Clerk:", error);
+    throw error;
   }
 }
