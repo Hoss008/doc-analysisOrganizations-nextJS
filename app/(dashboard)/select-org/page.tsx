@@ -154,7 +154,7 @@ export default function SelectOrgPage() {
               <Button
                 onClick={handleCreateOrg}
                 disabled={isCreating || !orgName.trim()}
-                className="min-w-[100px]"
+                className="min-w-25"
               >
                 {isCreating ? (
                   <>
