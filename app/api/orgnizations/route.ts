@@ -20,7 +20,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if organization already exists
     const existingOrg = await prisma.organization.findUnique({
       where: { clerkOrgId },
     });
@@ -33,13 +32,11 @@ export async function POST(request: Request) {
       });
     }
 
-    // Find or create user
     let user = await prisma.user.findUnique({
       where: { clerkUserId: userId },
     });
 
     if (!user) {
-      // Create user if doesn't exist
       user = await prisma.user.create({
         data: {
           clerkUserId: userId,
@@ -49,7 +46,6 @@ export async function POST(request: Request) {
       });
     }
 
-    // Create organization in database
     const organization = await prisma.organization.create({
       data: {
         clerkOrgId,
@@ -58,7 +54,6 @@ export async function POST(request: Request) {
       },
     });
 
-    // Create membership for the creator
     await prisma.organizationMember.create({
       data: {
         userId: user.id,
