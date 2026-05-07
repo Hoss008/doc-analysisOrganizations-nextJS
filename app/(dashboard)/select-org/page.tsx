@@ -12,7 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Building, Plus, Users, ArrowRight, Loader2 } from "lucide-react";
+import { Building, Plus, ArrowRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 export default function SelectOrgPage() {
