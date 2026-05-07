@@ -27,10 +27,8 @@ export default function SelectOrgPage() {
   const router = useRouter();
   const [orgName, setOrgName] = useState("");
   const [isCreating, setIsCreating] = useState(false);
-  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const refreshOrganizations = async () => {
-    setIsRefreshing(true);
     try {
       if (userMemberships?.revalidate) {
         await userMemberships.revalidate();
@@ -38,8 +36,6 @@ export default function SelectOrgPage() {
       toast.success("Organization list refreshed");
     } catch (error) {
       console.error("Failed to refresh organizations:", error);
-    } finally {
-      setIsRefreshing(false);
     }
   };
 
